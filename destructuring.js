@@ -22,7 +22,11 @@ var carDetails = {
 */
 
 //Code Here
-
+const { color, make, model, year } = carDetails; 
+// const { color } = carDetails; 
+// const { make } = carDetails; 
+// const { model } = carDetails; 
+// const { year } = carDetails; 
 
 
 ////////// PROBLEM 2 //////////
@@ -35,7 +39,7 @@ var carDetails = {
 
 function greeting( obj ) {
   //Code Here
-  
+  const { firstName, lastName, title } = obj; 
   // Do not edit the code below.
   return 'Hello, ' + title + ' ' + firstName + ' ' + lastName + '!';
   // Do not edit the code above.
@@ -52,9 +56,35 @@ function greeting( obj ) {
   Use object destructuring to save the property values to new variables.
   Sum up the values and return the total number.
 */
+let populations = {
+  utah: 1,
+  california: 2,
+  texas: 3,
+  arizona: 4
+}
 
 //Code Here
+// solution 1 - ok for small list 
+// const totalPopulation = (obj) => {
+//   let { utah, california, texas, arizona } = obj; 
+//   return utah + california + texas + arizona;
+// }
 
+// solution 2 - 
+const totalPopulation = (obj) => {
+  let destructuredObj = {}; 
+  for (let prop in obj) {
+    destructuredObj.prop = prop; 
+  } 
+  let total = 0; 
+  for (var prop in obj) {
+    total += obj[prop];
+  }
+  return total; 
+}
+console.log();
+
+console.log(totalPopulation(populations));
 
 
 ////////// PROBLEM 4 //////////
@@ -68,7 +98,21 @@ function greeting( obj ) {
 */
 
 //Code Here
-
+// function ingredients = (obj) => {
+//   var { carb, fat, protein } = obj;
+//   var arr = [];
+//   arr.push(carb, fat, protein);
+//   return arr; 
+// }
+//
+const ingredients = (obj) => {
+  let { carb, fat, protein } = obj; 
+  let arr = []; 
+  for (let prop in obj) {
+    arr.push(obj[prop]);
+  }
+  return arr; 
+}
 
 
 ////////// PROBLEM 5 //////////
@@ -86,7 +130,27 @@ function greeting( obj ) {
 */
 
 //Code Here
+const largeNumbers = ({ first, second, third }) => {
+  var arr = [ first, second, third ];
+  return Math.min(...arr); // spread operator creates a list of items from an array: first, second, third without being inside []. 
+  // return arr.sort((a,b) => a - b)[0]; 
+}
 
+// var objOfNumbers = {first: 1, second: 2, third: 3 }; 
+// const largeNumbers = ({ first, second, third }) => {
+//   var arr = [ first, second, third ];
+//   for (let i = 0; i < arr.length; i++) {
+//     for (let j = i + 1; j < arr.length; j++) {
+//       if (arr[i] > arr[j]) { 
+//         let temp = arr[i];
+//         arr[i] = arr[j]; 
+//         arr[j] = temp;
+//         i--;
+//       } 
+//     }
+//   }
+// }
+// console.log(largeNumbers());
 
 
 ////////// PROBLEM 6 //////////
@@ -98,5 +162,21 @@ function greeting( obj ) {
 */
 
 //Code Here
+function numberGroups({a,b,c}){
+  if (a.length > b.length && a.length > c.length) return a;
+  if (b.length > a.length && b.length > c.length) return b;
+  if (c.length > a.length && c.length > b.length) return c;
+};
 
-
+// wrong: 
+// const numberGroups = ({a, b, c}) => {
+//   let arr = [ a, b, c ]
+//   let longestArr = arr[0];
+//   for (let i = 1; i < arr.length-1; i++) {
+//     if (longest.length < arr[i].length) {
+//       longestArr = arr[i];
+//     }
+//   }
+//   return longestArr; 
+// }
+// console.log(numberGroups());
